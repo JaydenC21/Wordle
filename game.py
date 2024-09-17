@@ -1,4 +1,7 @@
-word = "blegh"
+import random
+
+wordBank = ["blegh", "soare", "qwert", "lunic", "trope"]
+word = random.choice(wordBank)
 default = '\033[0m'
 green = '\033[92m'
 yellow = '\033[33m'
@@ -19,10 +22,16 @@ def generateHint(userGuess):
 def gameLoop():
     guess = ""
     for i in range(6):
-        guess = input("What is your guess?")
+        guess = input("Attempt " + str(i+1) + "/6: What is your guess?")
         print(generateHint(guess))
         if guess == word:
-            print("Congratulations!")
-            break
-
+            if i==0:
+                print("Congratulations! You got it in 1 try!")
+                break
+            else:
+                print("Congratulations! You got it in " + str(i+1) + " tries!")
+                break
+    if guess != word:
+        print("The word was: " + word)
+        print("Better luck next time!")
 gameLoop()
